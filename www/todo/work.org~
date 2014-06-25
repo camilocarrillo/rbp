@@ -1,0 +1,44 @@
+* RE4
+** TODO Extend to RE4
+** TODO Move everything to git
+** DONE Organize existing code in CVS
+   CLOSED: [2013-05-06 Mon 11:35]
+** DONE DQM
+     CLOSED: [2013-05-03 Fri 15:58]
+** DONE Trigger Filter
+     CLOSED: [2013-05-03 Fri 15:58]
+** DONE Muon Reconstruction
+     CLOSED: [2013-05-03 Fri 15:59]
+** DONE Segment Muon asociation
+   CLOSED: [2013-05-03 Fri 15:59]
+** DONE Write list of commands to check out existing code.
+   CLOSED: [2013-05-03 Fri 15:59]
+** DONE Event display for RE4 and ME4
+   CLOSED: [2013-05-03 Fri 15:59]
+* Glass RPCs
+** TODO Jugar con la geometria.
+** Enviar Correo
+** Preparar presentacion
+** DONE recover sim hits
+   CLOSED: [2013-05-06 Mon 11:35]
+* RPC DPG
+** TODO Analyse Heavy Ion runs.
+** DONE Update Twiki pags with last presentations and date
+   CLOSED: [2013-04-26 Fri 12:25]
+** DONE To write minutes for Muon POG convenors meeting
+   CLOSED: [2013-04-26 Fri 12:25]
+** DONE Send email to Mario, Francesco, Davide and Pigi
+** DONE [#B] Migrate information in Napoli Server
+   CLOSED: [2013-04-26 Fri 10:23]
+OB* Post Docs
+* PostDocsx
+** TODO Minnesota (Pigi,Loic,Juan Carlos) 
+** DONE Fellow
+   CLOSED: [2013-04-26 Fri 12:26]
+** DONE Lyon (Jhon, Juan Carlos, Pigi) 
+   CLOSED: [2013-04-26 Fri 12:26]
+** DONE Brussels (Jhon, Juan Carlos, Pigi,Loic) 
+   CLOSED: [2013-04-26 Fri 12:26]
+* Higgs
+** DONE Ayudar a Luisa con MCFM
+   CLOSED: [2013-04-30 Tue 15:36]

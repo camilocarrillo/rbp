@@ -1,0 +1,16 @@
+TARGETS = mpd rsyslog triggerhappy ifplugd transmission-daemon motd bootlogs killprocs sudo apache2 single motion dbus redis-server ntp rsync cron dphys-swapfile ssh lightdm minissdpd rc.local rmnologin
+INTERACTIVE = apache2
+apache2: rsyslog
+single: killprocs motd bootlogs
+motion: rsyslog
+dbus: rsyslog
+redis-server: rsyslog
+ntp: rsyslog
+rsync: rsyslog
+cron: rsyslog
+dphys-swapfile: rsyslog
+ssh: rsyslog
+lightdm: dbus
+minissdpd: mpd motion rsyslog triggerhappy ifplugd lightdm dbus redis-server transmission-daemon apache2 motd bootlogs ntp rsync cron dphys-swapfile ssh sudo
+rc.local: mpd motion rsyslog triggerhappy ifplugd lightdm dbus redis-server transmission-daemon apache2 motd bootlogs ntp rsync cron dphys-swapfile ssh sudo
+rmnologin: sudo mpd motion rsyslog triggerhappy ifplugd lightdm dbus redis-server transmission-daemon apache2 motd bootlogs ntp rsync cron dphys-swapfile ssh

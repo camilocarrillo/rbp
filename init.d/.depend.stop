@@ -1,0 +1,10 @@
+TARGETS = triggerhappy ifplugd transmission-daemon fake-hwclock apache2 motion redis-server lightdm minissdpd urandom mpd alsa-utils sendsigs rsyslog umountnfs.sh rpcbind nfs-common networking umountfs umountroot halt reboot
+alsa-utils: mpd
+sendsigs: mpd motion triggerhappy ifplugd minissdpd alsa-utils lightdm redis-server transmission-daemon apache2
+rsyslog: sendsigs redis-server apache2
+umountnfs.sh: mpd motion triggerhappy ifplugd minissdpd alsa-utils lightdm rsyslog redis-server transmission-daemon sendsigs apache2
+networking: umountnfs.sh mpd ifplugd rpcbind transmission-daemon apache2
+umountfs: umountnfs.sh mpd motion networking triggerhappy ifplugd minissdpd alsa-utils lightdm rpcbind redis-server urandom transmission-daemon apache2
+umountroot: umountfs fake-hwclock
+halt: umountroot
+reboot: umountroot

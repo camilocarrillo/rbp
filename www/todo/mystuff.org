@@ -1,0 +1,18 @@
+* Geek 
+** TODO Poliglot.html 
+** TODO Automatic script para backup
+** TODO Reinstall Ubuntu April 25
+** TODO Bitcoins
+** DONE Optimize links in lxplus (add columns)
+** DONE Learn and start using orgmode
+** DONE Add columns in html for my links
+* Personal Beurocracy
+** TODO Regalos para la Mairie
+** TODO Fix my car exahust
+** DONE Dosimeter
+   CLOSED: [2013-04-26 Fri 10:23]
+** DONE Vignet Anastasia
+   CLOSED: [2013-04-26 Fri 10:23]
+** Hair cut
+* Others
+** TODO Russian Homework 

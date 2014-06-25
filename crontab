@@ -1,0 +1,50 @@
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=""
+
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#movies
+#01  5    * * *   root  cp -rf /media/red/complete/* /media/grey/complete/;rm /media/red/complete/* 
+05  5    * * *   root  /root/movies/gen_movies_list.sh 
+#local backups 
+20  5    * * *   root    /home/miloc/hd_log/synch.sh /home/botsync/Camera/ /media/white/photo/Camera/ 
+#dropbox local backup
+10  5    * * 2-6   root    mount /media/black;cp -rf /media/black/miloc/dropbox /media/red/miloc/ #black to red(3 days ago)
+20  5    * * 2-6   root    cp -rf /media/white/miloc/dropbox/ /media/black/miloc/;umount /media/black #white to black
+30  5    * * 2-6   root    cp -rf /home/miloc/dropbox/ /media/white/miloc/ #sd to white (1 day ago)
+#remote backups
+01  3    * * */2 root    rsync -a --progress --rsh='ssh -p 3001' /home/miloc/dropbox/ root@pesado.sytes.net:/DataVolume/backup/dropbox/ > /tmp/last_log_rsync_dropbox_pesado.txt ; cat /tmp/last_log_rsync_dropbox_pesado.txt >> /var/www/status.txt
+05  3    * * *   root    rsync -a --progress --rsh='ssh -p 3001' /home/botsync/Camera/ root@pesado.sytes.net:/shares/Public/Camera*Uploads/  > /tmp/last_log_rsync_camera_pesado.txt ; cat /tmp/last_log_rsync_camera_pesado.txt >> /var/www/status.txt
+#watchdog 
+*/10  8-23    * * *   root  /root/watch_dog/watch_dog.sh >/dev/null
+#take pictures
+*/10  7-23    * * *   root  /etc/init.d/3000pic.sh >/dev/null
+25  5    * * *   root    mv /var/www/webcam/3000/14* /media/white/log/images/
+#gen album
+40  5    * * *   root    /etc/init.d/gen_album.sh >/dev/null
+#irrigate plants
+35   8   * * *   root   touch /tmp/ON90 
+36   8   * * *   root   /home/miloc/plantas/send_mail.sh #enable also daemon2.sh
+#Gen Temperature Plots
+30  *    * * *   root    /root/i2c/double12h2d.sh >/dev/null
+30  1    * * *   root    /usr/bin/xvfb-run python /root/i2c/double1w2m.py >/dev/null
+#reading temperature
+@reboot root /usr/sbin/i2cget -y 1 0x4f 0x51
+* *    * * *   root  /root/i2c/temp.sh >/dev/null
+#Alarm
+#45  7    * * 1-5 root cp /home/miloc/alarm/play.m3u /tmp/
+#Disable hdmi and video services
+@reboot root /opt/vc/bin/tvservice -off
+
+#When automatic ssh works!
+#15  5    * * *  root    rsync -a --progress --rsh='ssh -p 3000' /home/miloc/dropbox/ root@10.0.0.4:/DataVolume/Public/miloc/dropbox/

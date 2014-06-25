@@ -1,0 +1,17 @@
+#!/bin/bash
+echo "taking picture"
+fswebcam -r 356x292 -d /dev/video0 /var/www/webcam/image.jpg
+ls -la /var/www/webcam/image.jpg
+echo picture was took
+export utime=`date +\%s`
+cp /var/www/webcam/image.jpg /var/www/webcam/3000/$utime.jpg
+export last_file=`ls -lt /var/www/webcam/3000/ | grep 1 | tail -n 1 | awk '{print $NF}'`
+rm /var/www/webcam/3000/$last_file
+ls -lt /var/www/webcam/3000/ | grep 13 | head -n 10 | awk '{print $NF}' > /var/www/last10.txt
+number=1
+for photo in `cat /var/www/last10.txt`
+do
+	 ln -sfn /var/www/webcam/3000/$photo /var/www/webcam/$number.jpg
+ 	 let "number=$number+1"
+	done
+

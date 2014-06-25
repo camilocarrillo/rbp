@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ls -lt /home/botsync/Camera/ | grep jpg | head -n 20 | awk '{print $NF}' > /var/www/album/last20.txt
+number=1
+for photo in `cat /var/www/album/last20.txt`
+do
+ cp /home/botsync/Camera/*$photo /var/www/album/photo-$number.jpg
+ convert -resize 10% /var/www/album/photo-$number.jpg /var/www/album/reduced-$number.jpg
+ let "number=$number+1"
+done
+
